@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# Read name
+VENV_NAME=$(head -n 1 ./binder/venv_name.txt | cut -f2 -d ' ')
+
+# Install coursework utils
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+COURSEWORK_SRC_HOME=${DIR}/coursework
+pip install ${COURSEWORK_SRC_HOME}
+
+# Install kernel for consistency with local installations
+python -m ipykernel install --user --name ${VENV_NAME} --display-name ${VENV_NAME}

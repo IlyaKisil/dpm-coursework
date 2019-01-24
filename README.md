@@ -1,5 +1,5 @@
 # Coursework materials
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/IlyaKisil/dpm-coursework/master?urlpath=lab/tree/)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/IlyaKisil/dpm-coursework/master?urlpath=lab/tree/index.ipynb)
 
 ## Run in a cloud without installation
 This is as simple as following this [link](http://example.com/).
