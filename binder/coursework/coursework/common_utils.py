@@ -1,8 +1,11 @@
 import os
 import pandas as pd
+from .data import FILE_1, FILE_2
 
 
 def read_data(file=1):
-    DATA_HOME = os.path.join(os.path.dirname(__file__), "data", "file_{}.csv".format(file))
-    df = pd.read_csv(DATA_HOME)
+    if file == 1:
+        df = pd.read_csv(FILE_1)
+    else:
+        df = pd.read_csv(FILE_2)
     return df

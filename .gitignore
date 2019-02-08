@@ -3,8 +3,8 @@ test_[0-9]*
 Untitled*.ipynb
 .coveragerc-dev
 .reports/
-docker/inns-2019-test.dockerfile
-Dockerfile
+
+ETH80/
 
 
 ########################
