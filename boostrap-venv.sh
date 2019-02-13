@@ -9,7 +9,7 @@ conda create -y --name ${VENV_NAME} python=3.6.5
 
 # Replicate binder build process
 source activate ${VENV_NAME}
-sh -c ./binder/postBuild
+sh -c "./binder/postBuild --local-build"
 source deactivate
 
 

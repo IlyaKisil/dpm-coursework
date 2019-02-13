@@ -1,12 +1,39 @@
 #!/usr/bin/env bash
 
-# Read name
+BINDER_BUILD=1
+
+# Read venv name
 VENV_NAME=$(head -n 1 ./binder/venv_name.txt | cut -f2 -d ' ')
 
-# Install coursework utils
+
+
+### Parse arguments
+for arg in "$@"; do
+    case ${arg} in
+        --local-build)
+            BINDER_BUILD=0
+            ;;
+        *)
+            # Skip unknown option
+            ;;
+    esac
+    shift
+done
+
+
+# Install coursework utils and dependencies
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 COURSEWORK_SRC_HOME=${DIR}/coursework
 pip install ${COURSEWORK_SRC_HOME}
 
+
 # Install kernel for consistency with local installations
 python -m ipykernel install --user --name ${VENV_NAME} --display-name ${VENV_NAME}
+
+
+# Install jupyterlab extensions if executed during binder build
+if [[ ($BINDER_BUILD == 1) ]]; then
+    jupyter labextension install @jupyterlab/toc --no-build
+    jupyter lab clean
+    jupyter lab build
+fi
