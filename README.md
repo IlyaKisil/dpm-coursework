@@ -1,7 +1,8 @@
 # Coursework materials
+
+## Completing in a cloud without installation 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/IlyaKisil/dpm-coursework/master?urlpath=lab/tree/notebooks/0_Table_of_contents.ipynb)
 
-## Completing in a cloud without installation
 This is as simple as clicking on the `binder` badge above. This comes at the cost of lower computational resources being available to you. 
 
 ## Completing on your personal computer
@@ -29,6 +30,8 @@ This is as simple as clicking on the `binder` badge above. This comes at the cos
     pip install binder\coursework
     python -m ipykernel install --user --name "dpm-coursework" --display-name "dpm-coursework"    
     ```
+    
+5.  Start JupyterLab and open a notebook with table of contents (should look like [this](https://github.com/IlyaKisil/dpm-coursework/blob/master/notebooks/0_Table_of_contents.ipynb)). You can find it under the `notebooks` directory. 
 
 ## Reporting problems and issues
 
