@@ -2,7 +2,7 @@ import os
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from scipy import misc
+from hottbox.core import Tensor
 
 
 _DATA_HOME = os.path.join(os.path.dirname(__file__))
@@ -134,3 +134,72 @@ class ETH80(object):
 def rgb_to_gray(image):
     """ Convert to gray-scale """
     return np.dot(image[..., :3], [0.299, 0.587, 0.114])
+
+
+def get_image(item, view):
+    """ Utility to get images of interest for assignment
+
+    Parameters
+    ----------
+    item : str
+    view : int
+
+    Returns
+    -------
+    image : np.ndarray
+    """
+    if view == "side":
+        item_properties = dict(angle_1=["090"], angle_2=["045"])
+    elif view == "top":
+        item_properties = dict(angle_1=["000"], angle_2=["000"])
+    else:
+        raise ValueError("Parameter 'view' should be equal either 'top' or 'side'")
+
+    if item not in ["car", "apple"]:
+        raise ValueError("Parameter 'item' should be either 'car' or 'apple'")
+
+    item_properties.update(dict(objects=[item]))
+
+    eth80 = ETH80()
+    car_images = eth80.get_samples(**item_properties)
+    image = car_images[0, :, :, :]
+    return image
+
+
+def plot_tensors(tensor, tensor_rec):
+    """ Utility to tensor images
+
+    Parameters
+    ----------
+    tensor : Tensor
+    tensor_rec : Tensor
+    """
+    image = tensor_to_image(tensor)
+    image_rec = tensor_to_image(tensor_rec)
+    fig = plt.figure(figsize=(7, 7))
+    ax = fig.add_subplot(1, 2, 1)
+    ax.imshow(image)
+    ax.set_axis_off()
+    plt.title('Original Image')
+    ax = fig.add_subplot(1, 2, 2)
+    ax.imshow(image_rec)
+    ax.set_axis_off()
+    plt.title('Reconstructed Image')
+
+
+def tensor_to_image(tensor):
+    """ Convert a tensor into an image
+
+    Parameters
+    ----------
+    tensor : Tensor
+
+    Returns
+    -------
+    image : np.ndarray
+    """
+    image = tensor.data
+    image -= tensor.data.min()
+    image /= tensor.data.max()
+    image *= 255
+    return image.astype(np.uint8)

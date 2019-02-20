@@ -16,6 +16,8 @@
 
 This is as simple as clicking on the `binder` badge above and requires to be connected to internet. Although, this option comes at the cost of lower computational resources being available to you, but it will be sufficient to successfully complete all assignments.
 
+> **Note:** It may take a couple of minutes to launch a `binder` server. If it takes longer then that, try to refresh the web page before [reporting this issue](#reporting-problems-and-issues).  
+
 ## Completing on your personal computer
  
 1.  Install Anaconda - [installation file](https://www.anaconda.com/download/) (use `python 3.7`).
