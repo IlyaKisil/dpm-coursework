@@ -8,9 +8,9 @@ conda create -y --name ${VENV_NAME} python=3.6.5
 
 
 # Replicate binder build process
-source activate ${VENV_NAME}
+conda activate ${VENV_NAME}
 sh -c "./binder/postBuild --local-build"
-source deactivate
+conda deactivate
 
 
 # Cleaning steps
